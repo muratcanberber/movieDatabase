@@ -16,6 +16,17 @@ app.use(bodyParser.json());
 //Middlewares End
 
 
+//Getting Model
+const movies = require('./models/Movie');
+const Movie = mongoose.model('movies');
+
+//Connecting Server
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://root:12345@ds151951.mlab.com:51951/movie-dev')
+    .then(() => console.log('MongoDB Connected...'))
+    .catch(err => console.log(err));
+
+
 //Routes
 app.get('/', (req, res) => {
    Movie.find({})
@@ -30,20 +41,7 @@ app.get('/', (req, res) => {
 });
 
 
-
-//Getting Model
-const movies = require('./models/Movie');
-const Movie = mongoose.model('movies');
-
-//Connecting Server
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://root:12345@ds151951.mlab.com:51951/movie-dev')
-    .then(() => console.log('MongoDB Connected...'))
-    .catch(err => console.log(err));
-
-
-
-//Getting Form Body
+//New Movie To DB
 app.post('/', (req, res, body) => {
     
     const newMovie = {
@@ -62,22 +60,16 @@ app.post('/', (req, res, body) => {
 
 });
 
-app.get('/:id', (req, res) => {
-
-
-    Movie.findOne({ _id: req.params.id }, function (err, Movie) {
-        if (err) {
-            console.log("errr", err);
-        } else {
-        
-        }
-
-    }).then(Movie => {
-        res.render('index', Movie);
+// Editting Stage
+app.post('/:id', (req, res) => {
+    Movie.findOne({
+        _id: req.params.id
     })
-
-
-
+        .then(Movie => {
+            res.render('edit', {
+                Movie: Movie
+            } )
+        })
 });
 
 
