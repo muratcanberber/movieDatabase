@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 //Middlewares End
 
 
-//Getting Model
+//Getting Modelss
 const movies = require('./models/Movie');
 const Movie = mongoose.model('movies');
 
