@@ -10,14 +10,11 @@
             <div class="card-body">
                 <h5 class="card-title text-center">Add New Movie</h5>
                 <form class="form-group" action="/" method="POST">
-                    <span>Movie Name</span>
-                    <input type="text" class="form-control" name="movieName" required>
+                    <input type="text" class="form-control mt-2" name="movieName" required placeholder="Movies Name">
+                    <textarea type="text" class="form-control mt-2" name="movieDetails" required placeholder="Movie Details"></textarea>
             
-                    <span>Movie Details</span>
-                    <textarea type="text" class="form-control" name="movieDetails" required ></textarea>
             
-                    <span>Movie Poster</span>
-                    <input type="text" class="form-control" name="movieIMG" required>
+                    <input type="text" class="form-control mt-2" name="movieIMG" required placeholder="Movie Poster URL (please enter a valid url)">
 
                     <button type="submit" class="btn btn-block btn-dark mt-2">Save</button>
                 </form>
@@ -28,7 +25,7 @@
 
 
  {{#each movie}}   
-        <div class="col-sm-3 text-center float-left">
+        <div class="col-sm-3 text-center float-left mt-3">
             <div class="card">
                 <img class="card-img-top img-responsive " src="{{movieIMG}}" alt="Card image cap" >
                     
@@ -38,12 +35,12 @@
                     
                     <hr>
 
-                    <form action="/{{_id}}"  method="POST" style="float: left">
-                        <button class="btn btn-success btnEdit">Edit</button>
+                    <form action="/{{_id}}"  method="POST" style="display:inline-block">
+                        <button class="btn btn-success btn-block btn-large">Edit</button>
                     </form>
 
-                    <form action="/delete/{{_id}}" method="POST" style="float: right">
-                        <button class="btn btn-danger">Delete</button>
+                    <form action="/delete/{{_id}}" method="POST" style="display:inline-block">
+                        <button class="btn btn-danger btn-block btn-large">Delete</button>
                     </form>
                 </div>
             </div>
