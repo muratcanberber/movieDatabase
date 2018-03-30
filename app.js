@@ -60,7 +60,7 @@ app.post('/', (req, res, body) => {
 
 });
 
-// Editting Stage
+// Editting Form
 app.post('/:id', (req, res) => {
     Movie.findOne({
         _id: req.params.id
@@ -72,8 +72,32 @@ app.post('/:id', (req, res) => {
         })
 });
 
+//Edit Saving Changes
 
+app.post('/edit/:id', (req, res, body) => {
+    Movie.findOne({
+      _id: req.params.id
+    })
+    .then(Movie => {
+      // new values
+      Movie.movieName = req.body.movieName;
+      Movie.movieDetails = req.body.movieDetails;
+      Movie.movieIMG = req.body.movieIMG;
+  
+      Movie.save()
+         
+        });
+       
+    res.redirect('/')
+  });
 
+  app.post('/delete/:id', (req, res) => {
+    Movie.remove({_id: req.params.id})
+      .then(() => {
+        res.redirect('/');
+      });
+  });
+  
 
 
 // Initilazing Server
