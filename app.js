@@ -81,7 +81,7 @@ app.post('/delete/:id', (req, res) => {
 });
 
 // Initilazing Server
-const port = 3000;
+const port = 80;
 
 app.listen(port, () => {
     console.log(`Server started at port ${port}`);

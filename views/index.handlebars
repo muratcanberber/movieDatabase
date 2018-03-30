@@ -25,12 +25,12 @@
         </div>
     </div>       
 </div>
-
+ {{#each movie}}
 <div class="row mt-3 mb-3">
-    {{#each movie}}
-        <div class="col-3 text-center">
+   
+        <div class="col-sm-3 text-center">
             <div class="card">
-                <img class="card-img-top" src="{{movieIMG}}" alt="Card image cap" height="340">
+                <img class="card-img-top img-res" src="{{movieIMG}}" alt="Card image cap" height="340">
                     
                 <div class="card-body">
                     <h5 class="card-title"style="height: 60px;">{{movieName}}</h5>
@@ -48,5 +48,6 @@
                 </div>
             </div>
         </div>
-    {{/each}}
+   
 </div>
+ {{/each}}
