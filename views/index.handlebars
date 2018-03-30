@@ -1,54 +1,51 @@
-    {{#if Movie}}
-<script>
+{{#if Movie}}
+    <script>
     $('editForm').show();
-</script>
-    {{else}}
+    </script>
+{{/if}}
 
-    {{/if}}
-    <div class="row">
-        <div class="col-12">
-            <div class="card mt-2" name="form" id="form">
-                <div class="card-body">
+<div class="row">
+    <div class="col-12">
+        <div class="card mt-2" name="form" id="form">
+            <div class="card-body">
                 <h5 class="card-title text-center">Add New Movie</h5>
                 <form class="form-group" action="/" method="POST">
-                    <span>Movie Name</span>
-                    <input type="text" class="form-control" name="movieName" required>
+                    <input type="text" class="form-control mt-2" name="movieName" required placeholder="Movies Name">
+                    <textarea type="text" class="form-control mt-2" name="movieDetails" required placeholder="Movie Details"></textarea>
             
-                    <span>Movie Details</span>
-                    <textarea type="text" class="form-control" name="movieDetails" required ></textarea>
             
-                    <span>Movie Poster</span>
-                    <input type="text" class="form-control" name="movieIMG" required >
+                    <input type="text" class="form-control mt-2" name="movieIMG" required placeholder="Movie Poster URL (please enter a valid url)">
+
                     <button type="submit" class="btn btn-block btn-dark mt-2">Save</button>
-            
                 </form>
-                </div>
             </div>
-      
-        </div>       
-    </div>
+        </div>
+    </div>       
+</div>
 
-    <div class="row mt-3 mb-3">
-        {{#each movie}}
-            <div class="col-3 text-center">
-                <div class="card">
-                    <img class="card-img-top" src="{{movieIMG}}" alt="Card image cap" height="340">
-                    <h5 class="card-title text-center" hidden>{{_id}}</h5>
+
+ {{#each movie}}   
+        <div class="col-sm-3 text-center float-left mt-3">
+            <div class="card">
+                <img class="card-img-top img-responsive " src="{{movieIMG}}" alt="Card image cap" >
                     
-                    <div class="card-body">
-                        <h5 class="card-title"style="height: 60px;">{{movieName}}</h5>
-                        <p class="card-text" style="height: 90px; overflow:hidden;">{{movieDetails}}</p><span>...</span>
-                        <hr>
-                        <form action="/{{_id}}"  method="POST">
-                        <input type="hidden" name="id">
-                        <button class="btn btn-success btnEdit">Edit</button>
-                        
-                        <button class="btn btn-danger">Delete</button>
-                        </form>
-                    </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{movieName}}</h5>
+                    <p class="card-text" >{{movieDetails}}<span>...</span></p>
+                    
+                    <hr>
+
+                    <form action="/{{_id}}"  method="POST" style="display:inline-block">
+                        <button class="btn btn-success btn-block btn-large">Edit</button>
+                    </form>
+
+                    <form action="/delete/{{_id}}" method="POST" style="display:inline-block">
+                        <button class="btn btn-danger btn-block btn-large">Delete</button>
+                    </form>
                 </div>
             </div>
-        {{/each}}
-    </div>
+        </div>
+   
 
-
+ {{/each}}
+ 

@@ -1,14 +1,13 @@
-
 <div class="card mt-2" id="editForm">
     <div class="card-body">
         <h5 class="card-title text-center">Edit Movie</h5>
-        <form class="form-group" action="/edit/update?:{{id}}" method="POST">
-        <center>
-        <img src="{{Movie.movieIMG}}" alt="Card image cap" style="width:300px; heigth:500px">
-        </center>
-        <br>
+        
+        <form class="form-group" action="/edit/{{ Movie.id }}" method="POST">
+            <center>
+                <img src="{{Movie.movieIMG}}" alt="Card image cap" style="width:300px; heigth:500px">
+            </center>
+            <br>
             <span>Movie Name</span>
-            
             <input type="text" class="form-control" name="movieName" required value="{{Movie.movieName}}">
 
             <span>Movie Details</span>
@@ -16,6 +15,7 @@
 
             <span>Movie Poster</span>
             <input type="text" class="form-control" name="movieIMG" required value="{{Movie.movieIMG}}">
+            
             <button type="submit" class="btn btn-block btn-warning mt-2">Edit</button>
         </form>
     </div>
