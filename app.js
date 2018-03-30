@@ -4,46 +4,39 @@ const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const app = express();
 
-//Middlewares
-// Register `hbs.engine` with the Express app.
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
-app.set('view engine', 'handlebars');
+// ### Middlewares ###
 
-//Body-Parser
+    // Register `hbs.engine` with the Express app.
+    app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+    app.set('view engine', 'handlebars');
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-//Middlewares End
+    // Body-Parser
+    app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(bodyParser.json());
 
+// ### Middlewares End ###
 
-//Getting Models
+// Getting Models
 const movies = require('./models/Movie');
 const Movie = mongoose.model('movies');
 
-//Connecting Server
+// Connecting Server
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://root:12345@ds151951.mlab.com:51951/movie-dev')
     .then(() => console.log('MongoDB Connected...'))
     .catch(err => console.log(err));
 
-
-//Routes
+// Routes
 app.get('/', (req, res) => {
    Movie.find({})
     .sort({date:'desc'})
-    .then(movie =>{
-        res.render('index', 
-    {
-        movie: movie
+    .then(movie => {
+        res.render('index', { movie: movie })
     })
-    })
-
 });
 
-
-//New Movie To DB
+// New Movie To DB
 app.post('/', (req, res, body) => {
-    
     const newMovie = {
         movieName     : req.body.movieName,
         movieDetails  : req.body.movieDetails,
@@ -55,56 +48,41 @@ app.post('/', (req, res, body) => {
         .then(movies => {
             res.redirect('/');
         })
-
-
-
 });
 
 // Editting Form
 app.post('/:id', (req, res) => {
-    Movie.findOne({
-        _id: req.params.id
-    })
+    Movie.findOne({ _id: req.params.id })
         .then(Movie => {
-            res.render('edit', {
-                Movie: Movie
-            } )
+            res.render('edit', { Movie: Movie })
         })
 });
 
-//Edit Saving Changes
-
+// Edit Saving Changes
 app.post('/edit/:id', (req, res, body) => {
-    Movie.findOne({
-      _id: req.params.id
-    })
-    .then(Movie => {
-      // new values
-      Movie.movieName = req.body.movieName;
-      Movie.movieDetails = req.body.movieDetails;
-      Movie.movieIMG = req.body.movieIMG;
+    Movie.findOne({ _id: req.params.id })
+        .then(Movie => {
+            // new values
+            Movie.movieName = req.body.movieName;
+            Movie.movieDetails = req.body.movieDetails;
+            Movie.movieIMG = req.body.movieIMG;
   
-      Movie.save()
-         res.redirect('/');
+            Movie.save()
+            res.redirect('/')
         });
-       
-   
-  });
+});
 
-
-  //Delete Movie
-  app.post('/delete/:id', (req, res) => {
+// Delete Movie
+app.post('/delete/:id', (req, res) => {
     Movie.remove({_id: req.params.id})
-      .then(() => {
-        res.redirect('/');
-      });
-  });
-  
-
+        .then(() => {
+            res.redirect('/');
+        });
+});
 
 // Initilazing Server
 const port = 3000;
+
 app.listen(port, () => {
     console.log(`Server started at port ${port}`);
 });
-
