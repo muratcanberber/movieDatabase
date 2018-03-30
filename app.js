@@ -85,12 +85,14 @@ app.post('/edit/:id', (req, res, body) => {
       Movie.movieIMG = req.body.movieIMG;
   
       Movie.save()
-         
+         res.redirect('/');
         });
        
-    res.redirect('/')
+   
   });
 
+
+  //Delete Movie
   app.post('/delete/:id', (req, res) => {
     Movie.remove({_id: req.params.id})
       .then(() => {
