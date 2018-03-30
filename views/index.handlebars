@@ -25,16 +25,16 @@
         </div>
     </div>       
 </div>
- {{#each movie}}
-<div class="row mt-3 mb-3">
-   
-        <div class="col-sm-3 text-center">
+
+
+ {{#each movie}}   
+        <div class="col-sm-3 text-center float-left">
             <div class="card">
-                <img class="card-img-top img-res" src="{{movieIMG}}" alt="Card image cap" height="340">
+                <img class="card-img-top img-responsive " src="{{movieIMG}}" alt="Card image cap" >
                     
                 <div class="card-body">
-                    <h5 class="card-title"style="height: 60px;">{{movieName}}</h5>
-                    <p class="card-text" style="height: 90px; overflow:hidden;">{{movieDetails}}</p><span>...</span>
+                    <h5 class="card-title">{{movieName}}</h5>
+                    <p class="card-text" >{{movieDetails}}<span>...</span></p>
                     
                     <hr>
 
@@ -49,5 +49,6 @@
             </div>
         </div>
    
-</div>
+
  {{/each}}
+ 
