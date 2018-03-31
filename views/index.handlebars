@@ -26,9 +26,11 @@
 
  {{#each movie}}   
         <div class="col-sm-3 text-center float-left mt-3">
+            
             <div class="card">
+                <a href="/movies/{{movieName}}">
                 <img class="card-img-top img-responsive " src="{{movieIMG}}" alt="Card image cap" >
-                    
+                    </a>
                 <div class="card-body">
                     <h5 class="card-title">{{movieName}}</h5>
                     <p class="card-text" >{{movieDetails}}<span>...</span></p>

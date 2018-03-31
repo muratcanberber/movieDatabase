@@ -84,8 +84,7 @@ app.get('/movies/:movie', (req, res) => {
     
     let url = "http://www.omdbapi.com/?t="+req.params.movie+"&apikey=883b584c";
 
-    rp(url)
-    .then((url) => {
+    rp(url).then((url) => {
 
     let value = JSON.parse(url)
     console.log(value);
