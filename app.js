@@ -2,9 +2,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
+const rp = require('request-promise');
 const app = express();
 
-// ### Middlewares ###
 
     // Register `hbs.engine` with the Express app.
     app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
@@ -79,6 +79,43 @@ app.post('/delete/:id', (req, res) => {
             res.redirect('/');
         });
 });
+
+app.get('/movies/:movie', (req, res) => {
+    
+    let url = "http://www.omdbapi.com/?t="+req.params.movie+"&apikey=883b584c";
+
+    rp(url)
+    .then((url) => {
+
+    let value = JSON.parse(url)
+    console.log(value);
+    let data = {
+     Title      : value.Title,
+     Year       : value.Year,
+     Released   : value.Released,   
+     Genre      : value.Genre,
+     Director   : value.Director,
+     Plot       : value.Plot,
+     imdbRating : value.imdbRating,
+     Poster     : value.Poster,
+     imdbID     : value.imdbID
+        }
+
+        res.render('movies', data);
+
+
+    })
+    .catch(function (err) {
+        console.log('Houston we got a problem');
+        res.redirect('/');
+    });
+
+
+   
+});
+
+
+
 
 // Initilazing Server
 const port = 80;
