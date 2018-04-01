@@ -1,129 +1,32 @@
-<style>
-  @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
-
-@import url('https://fonts.googleapis.com/css?family=Fredericka+the+Great');
-
-.col-md-5, .description {
-   padding: 0;  
-}
-
-.description {
-   font-family: 'Fredericka the Great', cursive;
-   text-align: center;
-}
-
-.card-header, .metadata {
-   background: none;
-   padding: 0;
-   position: relative;
-   border-style: none;
-}
-
-.metadata {
-   font-size: 16px;
-   i, p {
-      float: left;
-   }
-   p {
-      margin-top: 0;
-      margin-left: 10px;
-   }
-   i {
-      color: #ff9d00;
-      margin-top: 5px;
-      margin-left: 1px;
-   }
-}
-
-.card-img {
-   -webkit-clip-path: inset(10% 0 20% 0);
-    clip-path: inset(10% 0 20% 0);
-    margin-top: -15%;
-}
-
-.card-body {
-   position: relative;
-   margin-top: -30%;
-   color: #9FA7A9;
-   .card-title {
-      font-weight: 600;
-      color: #414345;
-   }
-   .card-text {
-      margin-top: 8px;
-      font-weight: 600;
-      line-height: 30px;
-   }
-}
-
-.card, .trailer-preview {
-   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-   &:hover {
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.10), 0 8px 8px rgba(0, 0, 0, 0.18);
-   }   
-}
-
-.card {
-   border-radius: 8pt;
-   border-style: none;
-   overflow: hidden;
-   transform: scale(0.8);
-   margin-top: -60px;
-}
-
-.trailer-preview {
-   background-color: #ff3d49;
-   position: absolute;
-   top: -46px;
-   right: 24px;
-   width: 80px;
-   height: 80px;
-   border-radius: 50%;
-   color: white;
-   font-size: 36px;
-   text-align: center;
-   padding-top: 13px;
-   &:hover, &:disabled, &:active, &:focus {
-      background-color: #ff3d49;
-      color: white;
-   }
-   i {
-      margin-left: 5px;
-   }
-}
-</style>
 
 
 
-<div class="container center">
-    <div class="row flex-column-reverse flex-md-row justify-content-center">
-        <div class="col-md-6">
-            <div class="card">   
-               <div class="card-header">
-                  <img class="card-img img-responsive" src="{{Poster}}" alt="Card image">
-               </div>  
-               <div class="card-body">
-                  <h1 class="card-title text-center">{{Title}}</h1>
-                  <div class="container">
-                     <div class="row">
-                        <div class="col-4 metadata">
-                           <i class="fa fa-star" aria-hidden="true"></i> 
-                           <p>{{imdbRating}}</p>
-                        </div>
-                        <div class="col-8 metadata">Genre : {{Genre}}</div>
-                        <div class="col-8 metadata">Released : {{Released}}</div>
-                     </div>
-                  </div>      
-                  <p class="card-text">{{Plot}}</p>
-                  <a class="trailer-preview" href="https://www.youtube.com/results?search_query={{Title}}" target="new">
-                     <i class="fa fa-play" aria-hidden="true"></i>
+
+<section>
+  <div class="container py-3">
+    <div class="card">
+      <div class="row ">
+        <div class="col-lg-4">
+           <img class="card-img mt-2 mb-2 ml-2 mr-2" src="{{Poster}}" alt="Card image">
+              
+          </div>
+          <div class="col-md-8 px-3">
+            <div class="card-block px-3">
+              <h4 class="card-title mt-5">{{Title}}</h4>
+                <p>IMDb Rating : {{imdbRating}} </p>
+                <p>Genre : {{Genre}} </p>
+                <p>Released : {{Released}}</p>
+              <p class="card-text">{{Plot}}</p>
+            
+     <span>Director : {{Director}}</span><a href="http://imdb.com/title/{{imdbID}}" class="btn btn-warning btn-block">Go To IMDB</a>
+     <a class="btn btn-danger btn-block" href="https://www.youtube.com/results?search_query={{Title}}" target="new" >
+            Go To YouTube
                      </a>
-               </div>
-               <span>Director : {{Director}}</span><a href="http://imdb.com/title/{{imdbID}}" class="btn btn-warning btn-block">Go To IMDB</a>
-               
             </div>
+          </div>
+
         </div>
-           </div>
-</div>
-
-
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,9 +1,8 @@
 {{#if Movie}}
-    <script>
+<script>
     $('editForm').show();
-    </script>
-{{/if}}
-
+</script> {{/if}}
+<li class="list-group-item">
 <div class="row">
     <div class="col-12">
         <div class="card mt-2" name="form" id="form">
@@ -12,42 +11,46 @@
                 <form class="form-group" action="/" method="POST">
                     <input type="text" class="form-control mt-2" name="movieName" required placeholder="Movies Name">
                     <textarea type="text" class="form-control mt-2" name="movieDetails" required placeholder="Movie Details"></textarea>
-            
-            
+
+
                     <input type="text" class="form-control mt-2" name="movieIMG" required placeholder="Movie Poster URL (please enter a valid url)">
 
                     <button type="submit" class="btn btn-block btn-dark mt-2">Save</button>
                 </form>
             </div>
         </div>
-    </div>       
+    </div>
 </div>
 
 
- {{#each movie}}   
-        <div class="col-sm-3 text-center float-left mt-3">
-            
-            <div class="card">
+
+    {{#each movie}}
+<div class="container mt-2">
+    <div class="card mt-2">
+      <div class="row ">
+        <div class="col-sm-2">
                 <a href="/movies/{{movieName}}">
-                <img class="card-img-top img-responsive " src="{{movieIMG}}" alt="Card image cap" >
-                    </a>
-                <div class="card-body">
-                    <h5 class="card-title">{{movieName}}</h5>
-                    <p class="card-text" >{{movieDetails}}<span>...</span></p>
-                    
-                    <hr>
-
-                    <form action="/{{_id}}"  method="POST" style="display:inline-block">
-                        <button class="btn btn-success btn-block btn-large">Edit</button>
-                    </form>
-
-                    <form action="/delete/{{_id}}" method="POST" style="display:inline-block">
-                        <button class="btn btn-danger btn-block btn-large">Delete</button>
-                    </form>
-                </div>
+        <img class="card-img-top img-responsive " src="{{movieIMG}}" alt="Card image cap">
+    </a>
+          </div>
+          <div class="col-md-8 ">
+            <div class="card-block ">
+              <h4 class="card-title">{{movieName}}</h4>
+              <p class="card-text">{{movieDetails}}...</p>
+                 <form action="/{{_id}}" method="POST" style="display:inline-block">
+            <button class="btn btn-success btn-block btn-large">Edit</button>
+            </form>
+            <form action="/delete/{{_id}}" method="POST" style="display:inline-block">
+                <button class="btn btn-danger btn-block btn-large">Delete</button>
+            </form>
             </div>
-        </div>
-   
+          </div>
 
- {{/each}}
- 
+        </div>
+      </div>
+    </div>
+
+
+    {{/each}}
+
+
