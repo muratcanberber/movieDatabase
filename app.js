@@ -22,7 +22,7 @@ const Movie = mongoose.model('movies');
 
 // Connecting Server
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://root:12345@ds151951.mlab.com:51951/movie-dev')
+mongoose.connect('mongodb://***')
     .then(() => console.log('MongoDB Connected...'))
     .catch(err => console.log(err));
 
